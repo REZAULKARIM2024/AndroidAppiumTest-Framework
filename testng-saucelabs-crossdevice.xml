@@ -1,0 +1,49 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+    Cross-Device Test Suite — Android 10 + Android 12
+    Same tests run on two different Android versions to verify compatibility.
+
+    Run: Right-click → Run As → TestNG Suite
+    Note: Runs sequentially (2 SauceLabs sessions back-to-back)
+-->
+<suite name="CrossDeviceSuite" verbose="1">
+
+    <parameter name="runMode"       value="saucelabs"/>
+    <parameter name="saucelabsUser" value=" "/>
+    <parameter name="saucelabsKey"  value=" "/>
+
+    <listeners>
+        <listener class-name="listeners.ScreenshotListener"/>
+    </listeners>
+
+    <!-- ── Android 12 (API 32) ── -->
+    <test name="Smoke Tests — Android 12">
+        <parameter name="platformVersion" value="12"/>
+        <classes>
+            <class name="tests.CombinedApiDemosTests"/>
+        </classes>
+    </test>
+
+    <test name="E2E Journey — Android 12">
+        <parameter name="platformVersion" value="12"/>
+        <classes>
+            <class name="tests.E2EJourneyTests"/>
+        </classes>
+    </test>
+
+    <!-- ── Android 10 (API 29) ── -->
+    <test name="Smoke Tests — Android 10">
+        <parameter name="platformVersion" value="10"/>
+        <classes>
+            <class name="tests.CombinedApiDemosTests"/>
+        </classes>
+    </test>
+
+    <test name="E2E Journey — Android 10">
+        <parameter name="platformVersion" value="10"/>
+        <classes>
+            <class name="tests.E2EJourneyTests"/>
+        </classes>
+    </test>
+
+</suite>

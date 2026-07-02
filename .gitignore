@@ -1,0 +1,17 @@
+# Maven
+target/
+
+# SauceLabs credentials — NEVER commit these files
+testng-saucelabs.xml
+testng-saucelabs-crossdevice.xml
+testng-saucelabs-mydemo.xml
+testng-mydemo-local.xml
+
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+
+# Screenshots (optional — remove this line if you want to commit them)
+test-output/screenshots/

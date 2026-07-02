@@ -1,0 +1,155 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+    ════════════════════════════════════════════════════════════════════
+    MyDemoApp FULL TEST SUITE — সকল Category (Local)
+    ════════════════════════════════════════════════════════════════════
+
+    Run command:
+        mvn clean test -DsuiteXmlFile=testng-mydemo-all.xml
+
+    অথবা run-mydemo-all.bat দিয়ে।
+
+    Pre-requisites:
+        1. Android Emulator চালু (API 31, emulator-5554)
+        2. Appium Server চালু (npx appium)
+        3. APK present: C:\Users\rezau\MyDemoApp.apk
+
+    Total test categories: 13
+    Estimated tests: 75+
+    Estimated runtime: ~60-90 minutes (local emulator)
+
+    Categories:
+        [SMOKE]      - Basic sanity checks (6 tests)
+        [E2E]        - Full end-to-end flows (9 tests)
+        [LIFECYCLE]  - App lifecycle (6 tests)
+        [NAV]        - Navigation flows (7 tests)
+        [DEVICE]     - Device behavior (5 tests)
+        [NEGATIVE]   - Negative/boundary (8 tests)
+        [PERF]       - Performance timing (5 tests)
+        [SECURITY]   - Security checks (5 tests)
+        [A11Y]       - Accessibility (6 tests)
+        [DATA]       - Data-driven (9 tests)
+        [INSTALL]    - Install/uninstall (4 tests)
+        [INTERRUPT]  - Interrupts (5 tests)
+    ════════════════════════════════════════════════════════════════════
+-->
+<suite name="MyDemoApp — Full Suite (All Categories)" verbose="1" parallel="none">
+
+    <parameter name="runMode"         value="local"/>
+    <parameter name="saucelabsUser"   value=""/>
+    <parameter name="saucelabsKey"    value=""/>
+    <parameter name="platformVersion" value=""/>
+
+    <listeners>
+        <listener class-name="listeners.ScreenshotListener"/>
+    </listeners>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 1. SMOKE TESTS — Build সঠিকভাবে deploy হয়েছে কিনা      -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="1. Smoke Tests">
+        <classes>
+            <class name="tests.MyDemoSmokeTests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 2. REGRESSION — Existing 9 core E2E tests                -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="2. Regression (E2E Login + Cart + Checkout)">
+        <classes>
+            <class name="tests.MyDemoE2ETests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 3. APP LIFECYCLE — Background, rotation, kill/relaunch   -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="3. App Lifecycle Tests">
+        <classes>
+            <class name="tests.MyDemoAppLifecycleTests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 4. NAVIGATION — Screen to screen navigation flows        -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="4. Navigation Tests">
+        <classes>
+            <class name="tests.MyDemoNavigationTests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 5. DEVICE BEHAVIOR — Back button, home, rotation         -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="5. Device Behavior Tests">
+        <classes>
+            <class name="tests.MyDemoDeviceBehaviorTests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 6. NEGATIVE TESTS — Invalid inputs, edge cases           -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="6. Negative Tests">
+        <classes>
+            <class name="tests.MyDemoNegativeTests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 7. PERFORMANCE — Response time SLA checks                -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="7. Performance Tests">
+        <classes>
+            <class name="tests.MyDemoPerformanceTests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 8. SECURITY — Auth, injection, session                   -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="8. Security-Focused Tests">
+        <classes>
+            <class name="tests.MyDemoSecurityTests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 9. ACCESSIBILITY — Screen reader, content-desc, labels   -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="9. Accessibility Basics">
+        <classes>
+            <class name="tests.MyDemoAccessibilityTests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 10. DATA-DRIVEN — Multiple credentials, addresses, cards -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="10. Data-Driven Tests">
+        <classes>
+            <class name="tests.MyDemoDataDrivenTests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 11. INSTALL / UPGRADE / UNINSTALL                        -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="11. Install - Upgrade - Uninstall Tests">
+        <classes>
+            <class name="tests.MyDemoInstallTests"/>
+        </classes>
+    </test>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!-- 12. INTERRUPT — Call, SMS, network, low battery          -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <test name="12. Interrupt Tests (Call/SMS/Network)">
+        <classes>
+            <class name="tests.MyDemoInterruptTests"/>
+        </classes>
+    </test>
+
+</suite>

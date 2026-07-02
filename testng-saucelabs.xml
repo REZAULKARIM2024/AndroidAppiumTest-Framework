@@ -1,0 +1,80 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!--
+    SauceLabs-এ run করতে:
+    1. APK আপলোড করুন:
+       curl -u "YOUR_USER:YOUR_KEY" \
+         "https://api.us-west-1.saucelabs.com/v1/storage/upload" \
+         -F "payload=@C:\Users\rezau\ApiDemos-debug.apk" \
+         -F "name=ApiDemos-debug.apk"
+
+    2. saucelabsUser এবং saucelabsKey এর জায়গায় আপনার credentials দিন।
+       অথবা environment variable সেট করুন:
+         set SAUCE_USERNAME=your_username
+         set SAUCE_ACCESS_KEY=your_access_key
+
+    3. এই ফাইলে Right-click → Run As → TestNG Suite
+-->
+<suite name="SauceLabsRegressionSuite" verbose="1">
+
+    <parameter name="runMode"      value="saucelabs"/>
+    <parameter name="saucelabsUser" value=""/>
+    <parameter name="saucelabsKey"  value=" "/>
+
+    <listeners>
+        <listener class-name="listeners.ScreenshotListener"/>
+    </listeners>
+
+    <!-- InstallLifecycleTests বাদ: adb emu কমান্ড SauceLabs-এ কাজ করে না -->
+
+    <test name="Combined Core + Advanced Tests">
+        <classes>
+            <class name="tests.CombinedApiDemosTests"/>
+        </classes>
+    </test>
+
+    <test name="Enterprise Test Categories">
+        <classes>
+            <class name="tests.EnterpriseTestSuite"/>
+        </classes>
+    </test>
+
+    <test name="Interrupt Simulation Tests">
+        <classes>
+            <class name="tests.InterruptSimulationTests"/>
+        </classes>
+    </test>
+
+    <test name="Missing Coverage Tests">
+        <classes>
+            <class name="tests.MissingCoverageTests"/>
+        </classes>
+    </test>
+    
+		<!-- cd C:\Users\rezau\eclipse-workspace\appium-tests
+		mvn clean test -DsuiteXmlFile=testng-saucelabs.xml  appium        adb devices -->
+
+    <test name="API Integration Tests">
+        <classes>
+            <class name="tests.ApiIntegratedTests"/>
+        </classes>
+    </test>
+
+    <test name="Permission Tests">
+        <classes>
+            <class name="tests.PermissionTests"/>
+        </classes>
+    </test>
+
+    <test name="Security Tests">
+        <classes>
+            <class name="tests.SecurityTests"/>
+        </classes>
+    </test>
+
+    <test name="E2E Journey Tests">
+        <classes>
+            <class name="tests.E2EJourneyTests"/>
+        </classes>
+    </test>
+
+</suite>
