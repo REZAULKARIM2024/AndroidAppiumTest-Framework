@@ -247,7 +247,7 @@ Targets the [ApiDemos](https://github.com/appium/android-apidemos) reference app
 
 ---
 📞 Contact & Support
-Author: Rezaul Karim Email: rknyc2021@gmail.com Phone: +1 347-221-3047 LinkedIn: Rezaul Karim GitHub: @REZAULKARIM2024
+Author: Rezaul Karim Email: rknyc2021@gmail.com Phone: +1 347-221-3047 LinkedIn: linkedin.com/in/rezaul-karim-803a3b273 GitHub: @REZAULKARIM2024
 
 ## License
 
